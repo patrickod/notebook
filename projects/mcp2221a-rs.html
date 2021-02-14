@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Introduction - Patrick's Lab Notebook</title>
+        <title>MCP2221-rs - Patrick's Lab Notebook</title>
         
         
 
@@ -18,28 +18,28 @@
         <meta name="theme-color" content="#ffffff" />
 
         
-        <link rel="icon" href="favicon.svg">
+        <link rel="icon" href="../favicon.svg">
         
         
-        <link rel="shortcut icon" href="favicon.png">
+        <link rel="shortcut icon" href="../favicon.png">
         
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
         
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="stylesheet" href="../css/print.css" media="print">
         
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
         
-        <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
         
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
         
@@ -49,7 +49,7 @@
     <body>
         <!-- Provide site root to javascript -->
         <script type="text/javascript">
-            var path_to_root = "";
+            var path_to_root = "../";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="intro.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="projects/intro.html"><strong aria-hidden="true">2.</strong> Projects</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="projects/mcp2221a-rs.html"><strong aria-hidden="true">2.1.</strong> MCP2221-rs</a></li></ol></li><li class="chapter-item expanded "><a href="infrastructure/intro.html"><strong aria-hidden="true">3.</strong> Infrastructure</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="infrastructure/qemu.html"><strong aria-hidden="true">3.1.</strong> QEMU</a></li><li class="chapter-item expanded "><a href="infrastructure/edgerouter.html"><strong aria-hidden="true">3.2.</strong> EdgeRouter</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../intro.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../projects/intro.html"><strong aria-hidden="true">2.</strong> Projects</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../projects/mcp2221a-rs.html" class="active"><strong aria-hidden="true">2.1.</strong> MCP2221-rs</a></li></ol></li><li class="chapter-item expanded "><a href="../infrastructure/intro.html"><strong aria-hidden="true">3.</strong> Infrastructure</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../infrastructure/qemu.html"><strong aria-hidden="true">3.1.</strong> QEMU</a></li><li class="chapter-item expanded "><a href="../infrastructure/edgerouter.html"><strong aria-hidden="true">3.2.</strong> EdgeRouter</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -131,7 +131,7 @@
 
                     <div class="right-buttons">
                         
-                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
                         
@@ -167,18 +167,24 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h2><a class="header" href="#introduction" id="introduction">Introduction</a></h2>
-<p>Welcome to my lab notebook. This book aims to be a slightly more tidied up transcription of the ideas and thoughts that I regularly capture in paper form. Its purposes are twofold, to serve as a richer, searchable medium for my work notes but also to invite discussion and participation from others. If we share an interest in anything I've written about then please do reach out - I'd love to hear all about your adventures!</p>
-<p>The idea for this notebook repository was heavily inspired by the previous work of <a href="https://twitter.com/whitequark">whitequark</a> and <a href="https://twitter.com/bitshiftmask">James Munns</a>.</p>
+                        <h2><a class="header" href="#mcp2221" id="mcp2221">MCP2221</a></h2>
+<p>The MCP2221 is a neat USB-to-UART/I2C serial converter that also features 4 GP pins which can be used for multiple functions (ADC, DAC, interrupt detection, clock output). It is intended to allow for easy communication with embedded devices over USB, either via the USB CDC interface for the UART, or via USB-HID events for the I2C and GPIO functions.</p>
+<p>I'm specifically using the <a href="https://www.adafruit.com/product/4471">Adafruit MCP2221A breakout</a> which features both USB-C and a StemmaQT connectors. </p>
+<p>There are already a number of open source libraries that support interfacing with the MCP2221 in languages such as Python, but so far there is none for Rust. I'm working on an implementation as a learning exercise to familiarize myself with the <code>embedded-hal</code> crate and its use of Traits.</p>
+<p><a href="https://ww1.microchip.com/downloads/en/DeviceDoc/20005565C.pdf">Datasheet</a></p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
+                            <a rel="prev" href="../projects/intro.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
 
                         
-                            <a rel="next" href="projects/intro.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../infrastructure/intro.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -190,9 +196,13 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
+                    <a rel="prev" href="../projects/intro.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
 
                 
-                    <a rel="next" href="projects/intro.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../infrastructure/intro.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
@@ -215,14 +225,14 @@
         
 
         
-        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
         
 
-        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
         

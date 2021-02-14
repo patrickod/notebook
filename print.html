@@ -97,7 +97,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="intro.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="infrastructure/intro.html"><strong aria-hidden="true">2.</strong> Infrastructure</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="infrastructure/qemu.html"><strong aria-hidden="true">2.1.</strong> QEMU</a></li><li class="chapter-item expanded "><a href="infrastructure/edgerouter.html"><strong aria-hidden="true">2.2.</strong> EdgeRouter</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="intro.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="projects/intro.html"><strong aria-hidden="true">2.</strong> Projects</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="projects/mcp2221a-rs.html"><strong aria-hidden="true">2.1.</strong> MCP2221-rs</a></li></ol></li><li class="chapter-item expanded "><a href="infrastructure/intro.html"><strong aria-hidden="true">3.</strong> Infrastructure</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="infrastructure/qemu.html"><strong aria-hidden="true">3.1.</strong> QEMU</a></li><li class="chapter-item expanded "><a href="infrastructure/edgerouter.html"><strong aria-hidden="true">3.2.</strong> EdgeRouter</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -169,12 +169,19 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h3><a class="header" href="#introduction" id="introduction">Introduction</a></h3>
+                        <h2><a class="header" href="#introduction" id="introduction">Introduction</a></h2>
 <p>Welcome to my lab notebook. This book aims to be a slightly more tidied up transcription of the ideas and thoughts that I regularly capture in paper form. Its purposes are twofold, to serve as a richer, searchable medium for my work notes but also to invite discussion and participation from others. If we share an interest in anything I've written about then please do reach out - I'd love to hear all about your adventures!</p>
 <p>The idea for this notebook repository was heavily inspired by the previous work of <a href="https://twitter.com/whitequark">whitequark</a> and <a href="https://twitter.com/bitshiftmask">James Munns</a>.</p>
-<h3><a class="header" href="#infrastructure" id="infrastructure">Infrastructure</a></h3>
+<h2><a class="header" href="#projects" id="projects">projects</a></h2>
+<p>this section captures notes on a selection of projects that I'm working on in some form or another. </p>
+<h2><a class="header" href="#mcp2221" id="mcp2221">MCP2221</a></h2>
+<p>The MCP2221 is a neat USB-to-UART/I2C serial converter that also features 4 GP pins which can be used for multiple functions (ADC, DAC, interrupt detection, clock output). It is intended to allow for easy communication with embedded devices over USB, either via the USB CDC interface for the UART, or via USB-HID events for the I2C and GPIO functions.</p>
+<p>I'm specifically using the <a href="https://www.adafruit.com/product/4471">Adafruit MCP2221A breakout</a> which features both USB-C and a StemmaQT connectors. </p>
+<p>There are already a number of open source libraries that support interfacing with the MCP2221 in languages such as Python, but so far there is none for Rust. I'm working on an implementation as a learning exercise to familiarize myself with the <code>embedded-hal</code> crate and its use of Traits.</p>
+<p><a href="https://ww1.microchip.com/downloads/en/DeviceDoc/20005565C.pdf">Datasheet</a></p>
+<h2><a class="header" href="#infrastructure" id="infrastructure">Infrastructure</a></h2>
 <p>This section is a pseudo personal runbook for the administrative tasks involved in my personal infrastructure. It is mainly a collection of short command snippets and configuration files which I use repeatedly in different setups.</p>
-<h3><a class="header" href="#qemu--libvirtd" id="qemu--libvirtd">QEMU + libvirtd</a></h3>
+<h2><a class="header" href="#qemu--libvirtd" id="qemu--libvirtd">QEMU + libvirtd</a></h2>
 <h4><a class="header" href="#creating-sparse-img" id="creating-sparse-img">creating sparse img</a></h4>
 <p>new sparse &quot;qcow2&quot; type image of size 128GB</p>
 <pre><code class="language-bash">qemu-img create -f qcow2 guest.img 128G
