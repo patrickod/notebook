@@ -171,7 +171,46 @@
 <p>The MCP2221 is a neat USB-to-UART/I2C serial converter that also features 4 GP pins which can be used for multiple functions (ADC, DAC, interrupt detection, clock output). It is intended to allow for easy communication with embedded devices over USB, either via the USB CDC interface for the UART, or via USB-HID events for the I2C and GPIO functions.</p>
 <p>I'm specifically using the <a href="https://www.adafruit.com/product/4471">Adafruit MCP2221A breakout</a> which features both USB-C and a StemmaQT connectors. </p>
 <p>There are already a number of open source libraries that support interfacing with the MCP2221 in languages such as Python, but so far there is none for Rust. I'm working on an implementation as a learning exercise to familiarize myself with the <code>embedded-hal</code> crate and its use of Traits.</p>
-<p><a href="https://ww1.microchip.com/downloads/en/DeviceDoc/20005565C.pdf">Datasheet</a></p>
+<h3><a class="header" href="#reference-material" id="reference-material">Reference material</a></h3>
+<ul>
+<li><a href="https://ww1.microchip.com/downloads/en/DeviceDoc/20005565C.pdf">Datasheet</a></li>
+<li><a href="https://github.com/adafruit/Adafruit_Blinka/blob/master/src/adafruit_blinka/microcontroller/mcp2221/mcp2221.py">Adafruit Blinka library MCP2221 implementation</a></li>
+</ul>
+<h3><a class="header" href="#usb-hid" id="usb-hid">USB-HID</a></h3>
+<p>With the exception of the UART which uses USB-CDC all of the functionality in the MCP2221 is accessed via the USB HID (Human Interface Device) procotol. USB HID works by sending 64 byte command and response packets between the USB host and peripheral devices.</p>
+<p>Datasheet section <code>3.0</code> details the MCP2221 use of USB HID</p>
+<h3><a class="header" href="#commands--bytes" id="commands--bytes">Commands &amp; bytes</a></h3>
+<p><strong>misc commansd relating to steting device configuration values</strong></p>
+<table><thead><tr><th>command</th><th>byte</th><th>description</th></tr></thead><tbody>
+<tr><td><code>STATUS/SET_PARAMETERS</code></td><td><code>0x10</code></td><td>used both as the event which polls for status updates &amp; also sets certain I2C parameters</td></tr>
+<tr><td><code>READ_FLASH_DATA</code></td><td><code>0xB0</code></td><td>reads data structures from flash memory (chip settings, GPIO settings, USB VID/PID, serial). takes variable which dictates which data structure should be serialized and returned</td></tr>
+<tr><td><code>WRITE_FLASH_DATA</code></td><td><code>0xB1</code></td><td>writes the same configuration data structures into flash memory to adjust operation of the device. accepts variable which informs the device on how to interpret incoming bytes</td></tr>
+<tr><td><code>SEND_FLASH_PASSWORD</code></td><td><code>0xB2</code></td><td>set an 8 byte password to prevent alteration of configuration (not implemented**</td></tr>
+</tbody></table>
+<p><strong>I2C transfer commands</strong></p>
+<table><thead><tr><th>command</th><th>byte</th><th>description</th></tr></thead><tbody>
+<tr><td><code>I2C_WRITE_DATA</code></td><td><code>0x90</code></td><td>initiate I2C transfers and in cases of transfers over 60 bytes to send the next 60 bytes repeatedly until exhausted.</td></tr>
+<tr><td><code>I2C_WRITE_DATA_REPEATED_START</code></td><td><code>0x92</code></td><td>initiate I2C transfers using the repeated-start condition</td></tr>
+<tr><td><code>I2C_WRITE_DATA_NO_STOP</code></td><td><code>0x94</code></td><td>initiate I2C transfers but withholds STOP condition on transfer end</td></tr>
+<tr><td><code>I2C_READ_DATA</code></td><td><code>0x91</code></td><td>initiate/continue read I2C transfer (sends STOP)</td></tr>
+<tr><td><code>I2C_READ_DATA_REPEATED_START</code></td><td><code>0x93</code></td><td>initiate read transfer with repeated START</td></tr>
+<tr><td><code>I2C_READ_DATA</code></td><td><code>0x40</code></td><td>command which actually retrieves the I2C data for transfers started with the READ commands. Reads back responses in 60 byte chunks until complete</td></tr>
+</tbody></table>
+<p><strong>GPIO pin commands</strong></p>
+<table><thead><tr><th>command</th><th>byte</th><th>description</th></tr></thead><tbody>
+<tr><td><code>SET_GPIO_VALUES</code></td><td><code>0x50</code></td><td>Change the GPIO output values for pins configured to operate as GPIO outputs</td></tr>
+<tr><td><code>GET_GPIO_VALUES</code></td><td>`0x51**</td><td>Read back direction and pin value information for all pins operating as GPIO</td></tr>
+</tbody></table>
+<p><strong>SRAM settings</strong>*</p>
+<table><thead><tr><th>command</th><th>byte</th><th>description</th></tr></thead><tbody>
+<tr><td><code>SET_SRAM_SETTINGS</code></td><td><code>0x60</code></td><td>alters run-time chip settings which are not persisted to flash and which are reset upon power-down</td></tr>
+<tr><td><code>GET_SRAM_SETTINGS</code></td><td>`0x61**</td><td>read back ephemeral run-time chip settings</td></tr>
+</tbody></table>
+<p><strong>Misc</strong>*
+| command      | byte   | description                                                                                                |
+|--------------|--------|------------------------------------------------------------------------------------------------------------|
+| <code>CHIP_RESET</code> | <code>0x70</code> | forces a reset of the MCP2221. usually performed after updaing Flash config values to put them into effect |
+|              |        |                                                                                                            |</p>
 
                     </main>
 
