@@ -54,7 +54,8 @@ Datasheet section `3.0` details the MCP2221 use of USB HID
 | `GET_SRAM_SETTINGS` | `0x61** | read back ephemeral run-time chip settings                                                         |
 
 
-**Misc***
+**Misc**
+
 | command      | byte   | description                                                                                                |
 |--------------|--------|------------------------------------------------------------------------------------------------------------|
 | `CHIP_RESET` | `0x70` | forces a reset of the MCP2221. usually performed after updaing Flash config values to put them into effect |
