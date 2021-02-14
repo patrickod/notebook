@@ -51,7 +51,7 @@ Datasheet section `3.0` details the MCP2221 use of USB HID
 | command             | byte   | description                                                                                        |
 |---------------------|--------|----------------------------------------------------------------------------------------------------|
 | `SET_SRAM_SETTINGS` | `0x60` | alters run-time chip settings which are not persisted to flash and which are reset upon power-down |
-| `GET_SRAM_SETTINGS` | `0x61** | read back ephemeral run-time chip settings                                                         |
+| `GET_SRAM_SETTINGS` | `0x61` | read back ephemeral run-time chip settings                                                         |
 
 
 **Misc**
