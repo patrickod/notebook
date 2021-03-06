@@ -44,7 +44,7 @@ Datasheet section `3.0` details the MCP2221 use of USB HID
 | command           | byte   | description                                                                  |
 |-------------------|--------|------------------------------------------------------------------------------|
 | `SET_GPIO_VALUES` | `0x50` | Change the GPIO output values for pins configured to operate as GPIO outputs |
-| `GET_GPIO_VALUES` | `0x51** | Read back direction and pin value information for all pins operating as GPIO |
+| `GET_GPIO_VALUES` | `0x51` | Read back direction and pin value information for all pins operating as GPIO |
 
 **SRAM settings***
 
