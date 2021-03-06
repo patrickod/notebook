@@ -9,6 +9,7 @@ There are already a number of open source libraries that support interfacing wit
 ### Reference material
 
 * [Datasheet](https://ww1.microchip.com/downloads/en/DeviceDoc/20005565C.pdf)
+* [USB Human Input Device Tutorial Application Note](https://www.silabs.com/documents/public/application-notes/AN249.pdf)
 * [Adafruit Blinka library MCP2221 implementation](https://github.com/adafruit/Adafruit_Blinka/blob/master/src/adafruit_blinka/microcontroller/mcp2221/mcp2221.py)
 
 ### USB-HID
